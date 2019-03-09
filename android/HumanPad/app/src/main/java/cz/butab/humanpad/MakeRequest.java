@@ -1,6 +1,5 @@
 package cz.butab.humanpad;
 
-import android.media.UnsupportedSchemeException;
 import android.net.Uri;
 import android.util.Log;
 
@@ -16,18 +15,37 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
-
-import javax.net.ssl.HttpsURLConnection;
 
 
 /**
  * Created by petrkristan on 09.03.19.
  */
 
-public class makeRequest {
-    static  void  putJSON(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
-        BufferedReader reader=null;
+public class MakeRequest {
+    private final String url;
+
+
+    public MakeRequest(String url) {
+        this.url = url;
+    }
+
+    public void sendKeyAction(final int keycode, final String keyAction) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Do network action in this function
+                try {
+                    Log.d("onClick", "pripravuji");
+                    MakeRequest.putJSON(url, keycode, "player1", keyAction);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    static void putJSON(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
+        BufferedReader reader = null;
         String text = "0";
 
         try {
@@ -35,7 +53,7 @@ public class makeRequest {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("PUT");
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept","application/json");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.connect();
@@ -54,15 +72,14 @@ public class makeRequest {
             os.close();
 
             Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-            Log.i("MSG" , conn.getResponseMessage());
+            Log.i("MSG", conn.getResponseMessage());
 
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
 
             // Read Server Response
-            while((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 // Append server response in string
                 sb.append(line + "\n");
             }
@@ -72,24 +89,19 @@ public class makeRequest {
 
             conn.disconnect();
 
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 reader.close();
+            } catch (Exception ex) {
             }
-            catch(Exception ex) {}
         }
 
     }
 
-    static  void  postJSON(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
-        BufferedReader reader=null;
+    static void postJSON(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
+        BufferedReader reader = null;
         String text = "0";
 
         try {
@@ -97,7 +109,7 @@ public class makeRequest {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept","application/json");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.connect();
@@ -116,15 +128,14 @@ public class makeRequest {
             os.close();
 
             Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-            Log.i("MSG" , conn.getResponseMessage());
+            Log.i("MSG", conn.getResponseMessage());
 
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
 
             // Read Server Response
-            while((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 // Append server response in string
                 sb.append(line + "\n");
             }
@@ -134,25 +145,20 @@ public class makeRequest {
 
             conn.disconnect();
 
-        }
-            catch(Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }
-            finally
-        {
-            try
-            {
+        } finally {
+            try {
                 reader.close();
+            } catch (Exception ex) {
             }
-            catch(Exception ex) {}
         }
 
     }
 
 
     static void postURL(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
-        BufferedReader reader=null;
+        BufferedReader reader = null;
         String text = "0";
 
         try {
@@ -178,7 +184,7 @@ public class makeRequest {
             writer.close();
             os.close();
 
-            Log.i("REQUEST: ",  "Odesilam: " + String.valueOf(id));
+            Log.i("REQUEST: ", "Odesilam: " + String.valueOf(id));
 
 
             // Get the server response
@@ -188,8 +194,7 @@ public class makeRequest {
             String line = null;
 
             // Read Server Response
-            while((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 // Append server response in string
                 sb.append(line + "\n");
             }
@@ -198,47 +203,39 @@ public class makeRequest {
             Log.i("REQUEST: ", "Odpoved serveru: " + text);
 
 
-
-
             conn.connect();
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 reader.close();
+            } catch (Exception ex) {
             }
-            catch(Exception ex) {}
         }
     }
 
 
     // obsolate, it will be removed
     static void getURL(String urlweb, String id) throws UnsupportedEncodingException {
-        BufferedReader reader=null;
+        BufferedReader reader = null;
         String text = "0";
         String data = "keycode=" + id;
 
         // Send data
-        try
-        {
+        try {
             // Defined URL  where to send data
-            Log.d("URL: ", urlweb+"/");
-            URL url = new URL(urlweb+"/");
+            Log.d("URL: ", urlweb + "/");
+            URL url = new URL(urlweb + "/");
 
             // Send POST data request
 
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write( data );
+            wr.write(data);
             wr.flush();
 
-            Log.i("REQUEST: ",  "Odesilam: " + String.valueOf(id));
+            Log.i("REQUEST: ", "Odesilam: " + String.valueOf(id));
 
             // Get the server response
 
@@ -247,26 +244,20 @@ public class makeRequest {
             String line = null;
 
             // Read Server Response
-            while((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 // Append server response in string
                 sb.append(line + "\n");
             }
 
             text = sb.toString().trim();
             Log.i("REQUEST: ", "Odpoved serveru: " + text);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 reader.close();
+            } catch (Exception ex) {
             }
-            catch(Exception ex) {}
         }
 
 

@@ -6,19 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-
-import cz.butab.humanpad.HIDKeyCodes;
-
-import java.io.UnsupportedEncodingException;
 
 
 public class Tab1Fragment extends Fragment implements View.OnClickListener {
 
     public ImageView btnUp;
     public ImageView btnDown;
+
+    private MakeRequest mkReq = new MakeRequest(getString(R.string.urlweb));
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,30 +37,15 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
         Log.d("onClick", "volam");
         switch (v.getId()) {
             case R.id.btnDown:
-                sendKeyAction(HIDKeyCodes.Char_S, KeyAction.KeyClick);
+                mkReq.sendKeyAction(HIDKeyCodes.Char_S, KeyAction.KeyClick);
                 break;
                 
             case R.id.btnUp:
-                sendKeyAction(HIDKeyCodes.Char_W, KeyAction.KeyClick);
+                mkReq.sendKeyAction(HIDKeyCodes.Char_W, KeyAction.KeyClick);
                 break;
 
             default:
                 break;
         }
-    }
-
-    private void sendKeyAction(final int keycode, final String keyAction) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // Do network action in this function
-                try {
-                    Log.d("onClick", "pripravuji");
-                    makeRequest.putJSON(getString(R.string.urlweb), keycode, "player1", keyAction);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     }
 }
