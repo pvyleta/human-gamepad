@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">HumanPad</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_1">Mod 1</string>
+    <string name="tab_text_2">Mod 2</string>
+    <string name="tab_text_3">Mod 3</string>
+    <string name="tab_text_4">Mod 4</string>
+    <string name="tab_text_5">Mod 5</string>
+    <string name="tab_text_6">Mod 6</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
