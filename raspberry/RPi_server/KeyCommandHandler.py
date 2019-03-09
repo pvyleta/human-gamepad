@@ -3,6 +3,7 @@ import json
 
 import sys
 sys.path.append("..")
+sys.path.append("/usr/share/hgp/")
 import keyboard_emulator
 
 class KeyCommandHandler:
