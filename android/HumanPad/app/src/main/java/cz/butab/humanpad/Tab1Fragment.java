@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import cz.butab.humanpad.HIDKeyCodes;
+
 import java.io.UnsupportedEncodingException;
 
 
@@ -38,40 +40,31 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Log.d("onClick", "volam");
         switch (v.getId()) {
-            case R.id.btnUp:
-                    new Thread(new Runnable(){
-                        @Override
-                        public void run() {
-                            // Do network action in this function
-                            try {
-                                Log.d("onClick", "pripravuji");
-                                //makeRequest.dataSyncSent(getString(R.string.urlweb), "w"); //deprecated
-                                makeRequest.putJSON(getString(R.string.urlweb), 22,"player1", "toggle");
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-
-                break;
             case R.id.btnDown:
-                new Thread(new Runnable(){
-                    @Override
-                    public void run() {
-                        // Do network action in this function
-                        try {
-                            Log.d("onClick", "pripravuji");
-                            //makeRequest.dataSyncSent("w", getString(R.string.urlweb)); //deprecated
-                            makeRequest.putJSON(getString(R.string.urlweb),26,"player1", "toggle");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-
+                sendKeyAction(HIDKeyCodes.Char_S, KeyAction.KeyClick);
                 break;
+                
+            case R.id.btnUp:
+                sendKeyAction(HIDKeyCodes.Char_W, KeyAction.KeyClick);
+                break;
+
             default:
                 break;
         }
+    }
+
+    private void sendKeyAction(final int keycode, final String keyAction) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Do network action in this function
+                try {
+                    Log.d("onClick", "pripravuji");
+                    makeRequest.putJSON(getString(R.string.urlweb), keycode, "player1", keyAction);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
