@@ -40,16 +40,14 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
         Log.d("onClick", "volam");
         switch (v.getId()) {
             case R.id.btnDown:
-
-
                     new Thread(new Runnable(){
                         @Override
                         public void run() {
                             // Do network action in this function
                             try {
                                 Log.d("onClick", "pripravuji");
-                                //makeRequest.dataSyncSent("w", getString(R.string.urlweb)); //deprecated
-                                makeRequest.postURL("s",getString(R.string.urlweb),"player1", "toggle");
+                                //makeRequest.dataSyncSent(getString(R.string.urlweb), "w"); //deprecated
+                                makeRequest.postJSON(getString(R.string.urlweb), "s","player1", "toggle");
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -58,8 +56,6 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.btnUp:
-
-
                 new Thread(new Runnable(){
                     @Override
                     public void run() {
@@ -67,7 +63,7 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
                         try {
                             Log.d("onClick", "pripravuji");
                             //makeRequest.dataSyncSent("w", getString(R.string.urlweb)); //deprecated
-                            makeRequest.postURL("w",getString(R.string.urlweb),"player1", "toggle");
+                            makeRequest.postJSON(getString(R.string.urlweb),"w","player1", "toggle");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
