@@ -33,6 +33,14 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 Tab3Fragment tab3 = new Tab3Fragment();
                 Log.d("TAB", "prepinam 3");
                 return tab3;
+            case 3:
+                Tab4Fragment tab4 = new Tab4Fragment();
+                Log.d("TAB", "prepinam 4");
+                return tab4;
+            case 4:
+                Tab5Fragment tab5 = new Tab5Fragment();
+                Log.d("TAB", "prepinam 5");
+                return tab5;
             default:
                 Tab1Fragment tab11 = new Tab1Fragment();
                 Log.d("TAB", "default");
