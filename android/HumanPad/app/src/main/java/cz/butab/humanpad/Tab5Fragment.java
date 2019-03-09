@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.UnsupportedEncodingException;
@@ -15,11 +16,10 @@ import java.io.UnsupportedEncodingException;
 
 public class Tab5Fragment extends Fragment implements View.OnTouchListener {
 
-    private ImageView btnUp;
-    private ImageView btnDown;
-    private ImageView btnLeft;
-    private ImageView btnRight;
-    private Button btnTlacitko;
+    private ImageButton btnUp;
+    private ImageButton btnDown;
+    private ImageButton btnLeft;
+    private ImageButton btnRight;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,17 +27,17 @@ public class Tab5Fragment extends Fragment implements View.OnTouchListener {
         // Inflate the layout for this fragment
         View myView = inflater.inflate(R.layout.fragment_tab5, container, false);
 
-        btnUp = (ImageView) myView.findViewById(R.id.arrowUp);
+        btnUp = (ImageButton) myView.findViewById(R.id.arrowUp);
         btnUp.setOnTouchListener(this);
 
 
-        btnDown = (ImageView) myView.findViewById(R.id.arrowDown);
+        btnDown = (ImageButton) myView.findViewById(R.id.arrowDown);
         btnDown.setOnTouchListener(this);
 
-        btnLeft = (ImageView) myView.findViewById(R.id.arrowLeft);
+        btnLeft = (ImageButton) myView.findViewById(R.id.arrowLeft);
         btnLeft.setOnTouchListener(this);
 
-        btnRight = (ImageView) myView.findViewById(R.id.arrowRight);
+        btnRight = (ImageButton) myView.findViewById(R.id.arrowRight);
         btnRight.setOnTouchListener(this);
 
 //        btnTlacitko = (Button) myView.findViewById(R.id.tlacitko);
@@ -53,19 +53,19 @@ public class Tab5Fragment extends Fragment implements View.OnTouchListener {
 
         switch (v.getId()) {
             case R.id.arrowUp:
-                sendKeyAction(KeyMapper.Tab6.ButtonAKey, KeyAction.from(event));
+                sendKeyAction(KeyMapper.Tab5.ArrowUpKey, KeyAction.from(event));
                 break;
 
             case R.id.arrowDown:
-                sendKeyAction(KeyMapper.Tab6.ButtonBKey, KeyAction.from(event));
+                sendKeyAction(KeyMapper.Tab5.ArrowDownKey, KeyAction.from(event));
                 break;
 
             case R.id.arrowLeft:
-                sendKeyAction(KeyMapper.Tab6.ButtonCKey, KeyAction.from(event));
+                sendKeyAction(KeyMapper.Tab5.ArrowLeftKey, KeyAction.from(event));
                 break;
 
             case R.id.arrowRight:
-                sendKeyAction(KeyMapper.Tab6.ButtonDKey, KeyAction.from(event));
+                sendKeyAction(KeyMapper.Tab5.ArrowRightKey, KeyAction.from(event));
                 break;
 
             default:

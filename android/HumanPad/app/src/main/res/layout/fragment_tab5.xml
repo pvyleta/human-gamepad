@@ -21,24 +21,29 @@
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:background="@null"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/arrowRight"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_marginEnd="3dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
                 android:src="@drawable/rightarrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/arrowLeft"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/arrowLeft"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_marginStart="3dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
                 android:src="@drawable/leftarrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/arrowRight"
@@ -56,10 +61,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/arrowUp"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
                 android:src="@drawable/uparrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,10 +84,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/arrowDown"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
                 android:src="@drawable/downarrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,14 +97,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/btnb"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="33dp" />
+        <!--<ImageButton-->
+            <!--android:id="@+id/imageButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@null"-->
+            <!--android:src="@drawable/btnb"-->
+            <!--tools:layout_editor_absoluteX="29dp"-->
+            <!--tools:layout_editor_absoluteY="33dp" />-->
 
     </android.support.constraint.ConstraintLayout>
 
