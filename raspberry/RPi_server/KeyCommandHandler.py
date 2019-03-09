@@ -1,7 +1,15 @@
 import Constant
 import json
 
+import sys
+sys.path.append("..")
+sys.path.append("/usr/share/hgp/")
+import keyboard_emulator
+
 class KeyCommandHandler:
+    def __init__(self):
+        self.keyboard = keyboard_emulator.keyboard_emulator()
+
     def handle_input(self, data):
         jTxt = data.decode('utf-8')
         print(jTxt)
@@ -15,12 +23,17 @@ class KeyCommandHandler:
     def _handle_key(self, keyCodeStr, keyaction):
         keycode=int(keyCodeStr)
         if keyaction == Constant.KeyActionUp:
-            self.key_up(keycode)
+            self.key_released(keycode)
         elif keyaction == Constant.KeyActionDown:
-            self.key_down(keycode)
+            self.key_pressed(keycode)
+        elif keyaction == Constant.KeyActionToggle:
+            self.key_pressed(keycode)
+            self.key_released(keycode)
 
-    def key_down(self, keyCode):
-        print("key: ", keyCode, " Down")
+    def key_pressed(self, keyCode):
+        self.keyboard.press_key(keyCode)
+        print("key: ", keyCode, " pressed")
 
-    def key_up(self, keyCode):
-        print("key: ", keyCode, " Up")
+    def key_released(self, keyCode):
+        self.keyboard.release_key(keyCode)
+        print("key: ", keyCode, " released")

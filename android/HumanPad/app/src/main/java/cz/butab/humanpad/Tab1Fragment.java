@@ -47,7 +47,7 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
                             try {
                                 Log.d("onClick", "pripravuji");
                                 //makeRequest.dataSyncSent(getString(R.string.urlweb), "w"); //deprecated
-                                makeRequest.postJSON(getString(R.string.urlweb), "s","player1", "toggle");
+                                makeRequest.putJSON(getString(R.string.urlweb), 22,"player1", "toggle");
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -63,7 +63,7 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
                         try {
                             Log.d("onClick", "pripravuji");
                             //makeRequest.dataSyncSent("w", getString(R.string.urlweb)); //deprecated
-                            makeRequest.postJSON(getString(R.string.urlweb),"w","player1", "toggle");
+                            makeRequest.putJSON(getString(R.string.urlweb),26,"player1", "toggle");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
