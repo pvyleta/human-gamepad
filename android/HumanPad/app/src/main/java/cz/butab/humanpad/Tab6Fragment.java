@@ -13,10 +13,11 @@ import java.io.UnsupportedEncodingException;
 
 public class Tab6Fragment extends Fragment implements View.OnClickListener {
 
-    public ImageView btnA;
-    public ImageView btnB;
-    public ImageView btnC;
-    public ImageView btnD;
+    //change from public to private
+    private ImageView btnA;
+    private ImageView btnB;
+    private ImageView btnC;
+    private ImageView btnD;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,19 +47,19 @@ public class Tab6Fragment extends Fragment implements View.OnClickListener {
         Log.d("onClick", "volam");
         switch (v.getId()) {
             case R.id.btnA:
-                sendKeyAction(HIDKeyCodes.Char_S, KeyAction.KeyClick);
+                sendKeyAction(KeyMapper.Tab6.ButtonAKey, KeyAction.KeyClick);
                 break;
                 
             case R.id.btnB:
-                sendKeyAction(HIDKeyCodes.Char_W, KeyAction.KeyClick);
+                sendKeyAction(KeyMapper.Tab6.ButtonBKey, KeyAction.KeyClick);
                 break;
 
             case R.id.btnC:
-                sendKeyAction(HIDKeyCodes.Char_S, KeyAction.KeyClick);
+                sendKeyAction(KeyMapper.Tab6.ButtonCKey, KeyAction.KeyClick);
                 break;
 
             case R.id.btnD:
-                sendKeyAction(HIDKeyCodes.Char_W, KeyAction.KeyClick);
+                sendKeyAction(KeyMapper.Tab6.ButtonDKey, KeyAction.KeyClick);
                 break;
 
             default:
