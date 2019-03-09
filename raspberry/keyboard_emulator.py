@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-class keyboard_emulator:
-	NULL_CHAR = chr(0)
+NULL_CHAR = chr(0)
 
+class keyboard_emulator:
 	def __init__(self):
 		self.device = open("/dev/hidg0", "rb+")
 		self.pressed_keys = set()
@@ -18,7 +18,6 @@ class keyboard_emulator:
 	def update(self):
 		encoding = NULL_CHAR*2
 		for key in self.pressed_keys:
-			encoding += char(key)
+			encoding += chr(key)
 		encoding += NULL_CHAR * (6 - len(self.pressed_keys))
-
-		self.device.write(encoding)
+		self.device.write(encoding.encode())
