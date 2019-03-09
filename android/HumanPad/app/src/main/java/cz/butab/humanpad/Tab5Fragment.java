@@ -48,28 +48,28 @@ public class Tab5Fragment extends Fragment implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Log.d("onClick", "tlacim " + event);
+        if ((event.getAction() == MotionEvent.ACTION_DOWN) || (event.getAction() == MotionEvent.ACTION_UP)) {
+            Log.d("onClick", "tlacim " + event);
+            switch (v.getId()) {
+                case R.id.arrowUp:
+                    sendKeyAction(KeyMapper.Tab5.ArrowUpKey, KeyAction.from(event));
+                    break;
 
+                case R.id.arrowDown:
+                    sendKeyAction(KeyMapper.Tab5.ArrowDownKey, KeyAction.from(event));
+                    break;
 
-        switch (v.getId()) {
-            case R.id.arrowUp:
-                sendKeyAction(KeyMapper.Tab5.ArrowUpKey, KeyAction.from(event));
-                break;
+                case R.id.arrowLeft:
+                    sendKeyAction(KeyMapper.Tab5.ArrowLeftKey, KeyAction.from(event));
+                    break;
 
-            case R.id.arrowDown:
-                sendKeyAction(KeyMapper.Tab5.ArrowDownKey, KeyAction.from(event));
-                break;
+                case R.id.arrowRight:
+                    sendKeyAction(KeyMapper.Tab5.ArrowRightKey, KeyAction.from(event));
+                    break;
 
-            case R.id.arrowLeft:
-                sendKeyAction(KeyMapper.Tab5.ArrowLeftKey, KeyAction.from(event));
-                break;
-
-            case R.id.arrowRight:
-                sendKeyAction(KeyMapper.Tab5.ArrowRightKey, KeyAction.from(event));
-                break;
-
-            default:
-                break;
+                default:
+                    break;
+            }
         }
 
 
