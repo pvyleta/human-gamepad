@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HackathonTest</string>
+    <string name="zText">zText</string>
+    <string name="xText">xText</string>
+    <string name="yText">yText</string>
+    <string name="jumpCounter">0</string>
+    <string name="hint">hint</string>
+</resources>
