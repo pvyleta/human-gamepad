@@ -39,10 +39,7 @@ public class Tab5Fragment extends Fragment implements View.OnTouchListener {
 
         btnRight = (ImageButton) myView.findViewById(R.id.arrowRight);
         btnRight.setOnTouchListener(this);
-
-//        btnTlacitko = (Button) myView.findViewById(R.id.tlacitko);
-//        btnTlacitko.setOnTouchListener(this);
-
+        
         return myView;
     }
 
