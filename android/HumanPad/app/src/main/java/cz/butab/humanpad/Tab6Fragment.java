@@ -73,7 +73,7 @@ public class Tab6Fragment extends Fragment implements View.OnClickListener {
                 // Do network action in this function
                 try {
                     Log.d("onClick", "pripravuji");
-                    makeRequest.putJSON(getString(R.string.urlweb), keycode, "player1", keyAction);
+                    MakeRequest.putJSON(getString(R.string.urlweb), keycode, "player1", keyAction);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
