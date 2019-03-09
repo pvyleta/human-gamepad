@@ -26,6 +26,9 @@ class KeyCommandHandler:
             self.key_released(keycode)
         elif keyaction == Constant.KeyActionDown:
             self.key_pressed(keycode)
+        elif keyaction == Constant.KeyActionToggle:
+            self.key_pressed(keycode)
+            self.key_released(keycode)
 
     def key_pressed(self, keyCode):
         self.keyboard.press_key(keyCode)
