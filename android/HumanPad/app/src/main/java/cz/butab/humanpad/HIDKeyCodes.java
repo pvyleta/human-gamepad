@@ -21,4 +21,11 @@ public class HIDKeyCodes {
     public static final int Arrow_Left = 0x50;     // DEC: 80
     /** Dec: 79 */
     public static final int Arrow_Right = 0x4f;     // DEC: 79
+
+    /** Dec: 44 */
+    public static final int Space = 0x2c;       // DEC: 44
+    /** Dec: 224 */
+    public static final int LeftControl = 0xe0;     // DEC: 224
+    /** Dec: 228 */
+    public static final int RightControl = 0xe4;     // DEC: 228
 }
