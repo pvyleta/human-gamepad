@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.util.DisplayMetrics;
 
 import android.widget.TextView;
 
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Constants.HIGH = metrics.heightPixels;
+        Constants.WIDTH = metrics.widthPixels;
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
