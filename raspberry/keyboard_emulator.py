@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 
-class keyboard_elumator:
+class keyboard_emulator:
 	NULL_CHAR = chr(0)
 
 	def __init__(self):
 		self.device = open("/dev/hidg0", "rb+")
 		self.pressed_keys = set()
+	def __del__(self):
+		self.device.close()
 	def press_key(self, keynum):
-		self.pressed_keys.add(keynum)
-		self.update()
+		if len(self.pressed_keys) < 6:
+			self.pressed_keys.add(keynum)
+			self.update()
 	def release_key(self, keynum):
 		self.pressed_keys.discard(keynum)
 		self.update()
@@ -19,5 +22,3 @@ class keyboard_elumator:
 		encoding += NULL_CHAR * (6 - len(self.pressed_keys))
 
 		self.device.write(encoding)
-	def __del__(self):
-		self.device.close()
