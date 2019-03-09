@@ -20,6 +20,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         Log.d("TAB", "Zmena tabu");
         Log.d("TAB", String.valueOf(position));
 
+        Constants.TAB = position;
+
         switch (position) {
             case 0:
                 Tab1Fragment tab1 = new Tab1Fragment();
