@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TiltTest</string>
+    <string name="action_settings">Settings</string>
+    <string name="forward">forward</string>
+    <string name="back">back</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
+    <string name="xtext">xText</string>
+    <string name="ytext">yText</string>
+</resources>

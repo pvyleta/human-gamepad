@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:id="@+id/forward"
+        android:layout_width="95dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/forward"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="FORWARD" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="95dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="176dp"
+        android:text="@string/left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="LEFT" />
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="95dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="176dp"
+        android:text="@string/right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="RIGHT" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="95dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="272dp"
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="BACK" />
+
+    <TextView
+        android:id="@+id/xText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/xtext"
+        app:layout_constraintStart_toEndOf="@+id/right"
+        app:layout_constraintTop_toBottomOf="@+id/forward"
+        tools:text="X" />
+
+    <TextView
+        android:id="@+id/yText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/ytext"
+        app:layout_constraintStart_toEndOf="@+id/right"
+        app:layout_constraintTop_toBottomOf="@+id/xText"
+        tools:text="Y" />
+</android.support.constraint.ConstraintLayout>
