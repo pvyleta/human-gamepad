@@ -14,7 +14,8 @@ enum JumpState {
     NO_JUMP,
     GOING_UP,
     GOING_DOWN,
-    LANDING
+    LANDING,
+    COOLDOWN
 }
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
@@ -22,15 +23,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView xText, yText, zText, jumpCounter;
     private Sensor accelerometerSensor;
     private Sensor gravitySensor;
-    private SensorManager SM;
+    private SensorManager sensorManager;
 
-    private static final float GRAVITY_THRESHOLD = 7.0f;
-    private static final float UPPER_GRAVITY_THRESHOLD = 20.0f;
-    private static final float LOWER_GRAVITY_THRESHOLD = 8.0f;
-    private static final long TIME_THRESHOLD_NS = 3000000000L; // in nanoseconds (= 2sec)
-    private long mEventBeginning = 0;
     private JumpState mJumpState = JumpState.NO_JUMP;
+    private long mEventBeginning = 0;
+    private long mEventCooldownBeginning = 0;
     private int mJumpCounter = 0;
+
+    private static final float GOING_UP_GRAVITY_THRESHOLD = 20.0f;
+    private static final float GOING_DOWN_GRAVITY_THRESHOLD = 8.0f;
+    private static final float LANDING_GRAVITY_THRESHOLD = 15.0f;
+    private static final float STABLE_LOWER_GRAVITY_THRESHOLD = 7.0f;
+    private static final float STABLE_UPPER_GRAVITY_THRESHOLD = 11.0f;
+    private static final long MAX_EVENT_TIME_NS = 2000000000L; // in nanoseconds (= 2sec)
+    private static final long EVENT_COOLDOWN_TIME_NS = 200000000L; // in nanoseconds (= 0.2sec)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +44,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         // Create out Sensor Manager
-        SM = (SensorManager)getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
 
         // Accelerometer sensor
-        accelerometerSensor = SM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        gravitySensor = SM.getDefaultSensor(Sensor.TYPE_GRAVITY);
-
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
         // Register sensor listener
-        SM.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
 
         // Assign our text views
         xText = (TextView)findViewById(R.id.xText);
@@ -96,20 +101,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (mJumpState)
         {
             case NO_JUMP:
-                if (Math.abs(velocity) > UPPER_GRAVITY_THRESHOLD)
+                if (Math.abs(velocity) > GOING_UP_GRAVITY_THRESHOLD)
                 {
                     mEventBeginning = event.timestamp;
                     mJumpState = JumpState.GOING_UP;
                 }
                 break;
             case GOING_UP:
-                if (Math.abs(velocity) < LOWER_GRAVITY_THRESHOLD)
+                if (Math.abs(velocity) < GOING_DOWN_GRAVITY_THRESHOLD)
                 {
                     mJumpState = JumpState.GOING_DOWN;
                 }
                 break;
             case GOING_DOWN:
-                if (Math.abs(velocity) > 15.0f)
+                if (Math.abs(velocity) > LANDING_GRAVITY_THRESHOLD)
                 {
                     mJumpState = JumpState.LANDING;
                     onJumpDetected();
@@ -118,7 +123,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             case LANDING:
                 if (isStable(velocity))
                 {
+                    mEventCooldownBeginning = event.timestamp;
                     mEventBeginning = 0;
+                    mJumpState = JumpState.COOLDOWN;
+                }
+                break;
+            case COOLDOWN:
+                if ((event.timestamp - mEventCooldownBeginning) > EVENT_COOLDOWN_TIME_NS)
+                {
+                    mEventCooldownBeginning = 0;
                     mJumpState = JumpState.NO_JUMP;
                 }
                 break;
@@ -132,11 +145,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private boolean isStable(double velocity)
     {
-        return ((Math.abs(velocity) > 7.0f) && (Math.abs(velocity) < 11.0f));
+        return ((Math.abs(velocity) > STABLE_LOWER_GRAVITY_THRESHOLD) &&
+                (Math.abs(velocity) < STABLE_UPPER_GRAVITY_THRESHOLD));
     }
 
     private boolean hasTimeoutOccurred(long currentTimestamp, long eventBeginning)
     {
-        return ((currentTimestamp - eventBeginning) > TIME_THRESHOLD_NS);
+        return ((currentTimestamp - eventBeginning) > MAX_EVENT_TIME_NS);
     }
 }
