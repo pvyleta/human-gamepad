@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
+
 import socketserver
 import RequestHandler
 
 PORT = 8000
 
-#handler = http.server.SimpleHTTPRequestHandler
 handler = RequestHandler.GPRequestHandler
 
 httpd = socketserver.TCPServer(("", PORT), handler)
