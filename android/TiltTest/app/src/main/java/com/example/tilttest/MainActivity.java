@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             forward.setBackgroundColor(Color.WHITE);
         }
     }
-    
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // Not in use
