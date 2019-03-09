@@ -37,11 +37,11 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
         Log.d("onClick", "volam");
         switch (v.getId()) {
             case R.id.btnDown:
-                mkReq.sendKeyAction(HIDKeyCodes.Char_S, KeyAction.KeyClick);
+                mkReq.sendKeyAction(KeyMapper.Tab1.ArrowDownKey, KeyAction.KeyClick);
                 break;
                 
             case R.id.btnUp:
-                mkReq.sendKeyAction(HIDKeyCodes.Char_W, KeyAction.KeyClick);
+                mkReq.sendKeyAction(KeyMapper.Tab1.ArrowUpKey, KeyAction.KeyClick);
                 break;
 
             default:
