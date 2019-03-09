@@ -26,7 +26,69 @@ import javax.net.ssl.HttpsURLConnection;
  */
 
 public class makeRequest {
-    static  void  postJSON(String urlweb, String id, String player, String action) throws UnsupportedEncodingException {
+    static  void  putJSON(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
+        BufferedReader reader=null;
+        String text = "0";
+
+        try {
+            URL url = new URL(urlweb);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.connect();
+
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("keycode", String.valueOf(id));
+            jsonParam.put("player", player);
+            jsonParam.put("action", action);
+
+
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+//            os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+            os.writeBytes(jsonParam.toString());
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+            Log.i("MSG" , conn.getResponseMessage());
+
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+
+            // Read Server Response
+            while((line = reader.readLine()) != null)
+            {
+                // Append server response in string
+                sb.append(line + "\n");
+            }
+
+            text = sb.toString().trim();
+            Log.i("REQUEST: ", "Odpoved serveru: " + text);
+
+            conn.disconnect();
+
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch(Exception ex) {}
+        }
+
+    }
+
+    static  void  postJSON(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
         BufferedReader reader=null;
         String text = "0";
 
@@ -41,7 +103,7 @@ public class makeRequest {
             conn.connect();
 
             JSONObject jsonParam = new JSONObject();
-            jsonParam.put("keycode", id);
+            jsonParam.put("keycode", String.valueOf(id));
             jsonParam.put("player", player);
             jsonParam.put("action", action);
 
@@ -89,7 +151,7 @@ public class makeRequest {
     }
 
 
-    static void postURL(String urlweb, String id, String player, String action) throws UnsupportedEncodingException {
+    static void postURL(String urlweb, int id, String player, String action) throws UnsupportedEncodingException {
         BufferedReader reader=null;
         String text = "0";
 
@@ -103,7 +165,7 @@ public class makeRequest {
             conn.setDoOutput(true);
 
             Uri.Builder builder = new Uri.Builder()
-                    .appendQueryParameter("keycode", id)
+                    .appendQueryParameter("keycode", String.valueOf(id))
                     .appendQueryParameter("player", player)
                     .appendQueryParameter("action", action);
             String query = builder.build().getEncodedQuery();
