@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
-NULL_CHAR = chr(0)
 
-class keyboard_elumator
-	def __init__(self)
+class keyboard_elumator:
+	NULL_CHAR = chr(0)
+
+	def __init__(self):
 		self.device = open("/dev/hidg0", "rb+")
-	def press_key(self, keynum)
-		device.write((NULL_CHAR*2+chr(keynum)+NULL_CHAR*5))
-	def release_key(self)
-		device.write(NULL_CHAR*8)
-	def __del__(self)
+		self.pressed_keys = set()
+	def press_key(self, keynum):
+		self.pressed_keys.add(keynum)
+		self.update()
+	def release_key(self, keynum):
+		self.pressed_keys.discard(keynum)
+		self.update()
+	def update(self):
+		encoding = NULL_CHAR*2
+		for key in self.pressed_keys:
+			encoding += char(key)
+		encoding += NULL_CHAR * (6 - len(self.pressed_keys))
+
+		self.device.write(encoding)
+	def __del__(self):
+		self.device.close()
