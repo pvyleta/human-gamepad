@@ -65,7 +65,19 @@ public class Tab2Fragment extends Fragment implements SensorEventListener {
                 sum+=i;
             }
 
-            ball.setX((float) ((2*Constants.WIDTH/6.0)*(((sum/10.0)/9.81 + 1))));
+            float range = (float) ((sum/10.0)/9.81 + 1); /// 0-2
+            ball.setX((float) ((2*Constants.WIDTH/6.0)*(range)));
+
+            if(range > 1.1)
+            {
+                mkReq.sendKeyAction(KeyMapper.Tab2.ArrowLeftKey, KeyAction.KeyClick);
+            }
+
+            if(range < 0.9)
+            {
+                mkReq.sendKeyAction(KeyMapper.Tab2.ArrowRightKey, KeyAction.KeyClick);
+            }
+
 
             lastTenValues.remove(lastTenValues.firstElement());
         }
@@ -75,21 +87,4 @@ public class Tab2Fragment extends Fragment implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int i) {
         // Not used
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        Log.d("onClick", "volam");
-//        switch (v.getId()) {
-//            case R.id.btnDown:
-//                mkReq.sendKeyAction(KeyMapper.Tab1.ArrowDownKey, KeyAction.KeyClick);
-//                break;
-//
-//            case R.id.btnUp:
-//                mkReq.sendKeyAction(KeyMapper.Tab1.ArrowUpKey, KeyAction.KeyClick);
-//                break;
-//
-//            default:
-//                break;
-//        }
-//    }
 }
