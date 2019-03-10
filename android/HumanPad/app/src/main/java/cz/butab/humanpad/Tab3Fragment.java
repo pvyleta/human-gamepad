@@ -110,7 +110,8 @@ public class Tab3Fragment extends Fragment implements SensorEventListener {
                 if (Math.abs(velocity) > LANDING_GRAVITY_THRESHOLD)
                 {
                     mJumpState = JumpState.LANDING;
-                    request.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyClick);
+                    request.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyPressed);
+                    request.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyRelease);
                 }
                 break;
             case LANDING:

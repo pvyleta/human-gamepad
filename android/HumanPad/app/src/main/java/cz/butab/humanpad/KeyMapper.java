@@ -15,7 +15,7 @@ public class KeyMapper {
     }
 
     public class Tab3{
-        public static final int FireKey = HIDKeyCodes.LeftControl;
+        public static final int FireKey = HIDKeyCodes.Char_P;
     }
 
     public class Tab4{

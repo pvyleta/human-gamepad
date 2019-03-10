@@ -13,6 +13,9 @@ public class HIDKeyCodes {
     /** Dec: 8 */
     public static final int Char_E = 0x08;     // DEC: 8
 
+
+    /** Dec: 19 */
+    public static final int Char_P = 0x13;     // DEC: 19
     /** Dec: 82 */
     public static final int Arrow_Up = 0x52;     // DEC: 82
     /** Dec: 81 */
