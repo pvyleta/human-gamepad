@@ -114,13 +114,13 @@
         android:layout_height="61dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/ic_launcher_background"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/btnD2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toEndOf="@+id/btnD2"
         app:layout_constraintTop_toTopOf="@+id/btnD2" />
 

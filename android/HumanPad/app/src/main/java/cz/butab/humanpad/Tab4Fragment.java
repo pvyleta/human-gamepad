@@ -109,9 +109,9 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
                 }
                 break;
             case LANDING:
+                request.sendKeyAction(KeyMapper.Tab4.JumpKey, KeyAction.KeyRelease);
                 if (isStable(velocity))
                 {
-                    request.sendKeyAction(KeyMapper.Tab4.JumpKey, KeyAction.KeyRelease);
                     mEventCooldownBeginning = event.timestamp;
                     mEventBeginning = 0;
                     mJumpState = Tab4Fragment.JumpState.COOLDOWN;
