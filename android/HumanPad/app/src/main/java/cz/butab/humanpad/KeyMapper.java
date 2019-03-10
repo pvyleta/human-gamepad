@@ -15,11 +15,11 @@ public class KeyMapper {
     }
 
     public class Tab3{
-        public static final int JumpKey = HIDKeyCodes.Arrow_Left;
+        public static final int FireKey = HIDKeyCodes.LeftControl;
     }
 
     public class Tab4{
-        public static final int JumpKey = HIDKeyCodes.Arrow_Left;
+        public static final int JumpKey = HIDKeyCodes.Space;
     }
 
     public class Tab5{
