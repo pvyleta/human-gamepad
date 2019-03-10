@@ -64,7 +64,9 @@ public class Tab3Fragment extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event)
     {
-        detectJump(event);
+        if(Constants.TAB == 2) {
+            detectJump(event);
+        }
     }
 
     @Override
@@ -111,12 +113,12 @@ public class Tab3Fragment extends Fragment implements SensorEventListener {
                 {
                     mJumpState = JumpState.LANDING;
                     request.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyPressed);
-                    request.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyRelease);
                 }
                 break;
             case LANDING:
                 if (isStable(velocity))
                 {
+                    request.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyRelease);
                     mEventCooldownBeginning = event.timestamp;
                     mEventBeginning = 0;
                     mJumpState = JumpState.COOLDOWN;
