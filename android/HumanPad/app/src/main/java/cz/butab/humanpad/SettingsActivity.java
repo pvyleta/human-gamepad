@@ -1,7 +1,9 @@
 package cz.butab.humanpad;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -31,21 +33,42 @@ public class SettingsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         Spinner s;
-        s = (Spinner) findViewById(R.id.spinnerA);
+        s = findViewById(R.id.spinnerA);
         s.setAdapter(adapter);
         s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonAKey));
 
-        s = (Spinner) findViewById(R.id.spinnerB);
+        s = findViewById(R.id.spinnerB);
         s.setAdapter(adapter);
         s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonBKey));
 
-        s = (Spinner) findViewById(R.id.spinnerC);
+        s = findViewById(R.id.spinnerC);
         s.setAdapter(adapter);
         s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonCKey));
 
-        s = (Spinner) findViewById(R.id.spinnerD);
+        s = findViewById(R.id.spinnerD);
         s.setAdapter(adapter);
         s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonDKey));
+
+        View.OnClickListener l = new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // save
+                Spinner s = (Spinner) findViewById(R.id.spinnerA);
+                KeyMapper.Tab6.ButtonAKey= getKeycode((String)s.getSelectedItem());
+                s = (Spinner) findViewById(R.id.spinnerB);
+                KeyMapper.Tab6.ButtonBKey= getKeycode((String)s.getSelectedItem());
+                s = (Spinner) findViewById(R.id.spinnerC);
+                KeyMapper.Tab6.ButtonCKey= getKeycode((String)s.getSelectedItem());
+                s = (Spinner) findViewById(R.id.spinnerD);
+                KeyMapper.Tab6.ButtonDKey = getKeycode((String)s.getSelectedItem());
+
+                finish();
+                Intent myIntent = new Intent(SettingsActivity.this,MainActivity.class);
+                SettingsActivity.this.startActivity(myIntent);
+            }
+        };
+
+        findViewById(R.id.btnSave).setOnClickListener(l);
     }
 
     private int getSelectedIndex(List<String> items, int keycode) {
@@ -65,5 +88,20 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    private int getKeycode(String keycodeName){
+        Class c = HIDKeyCodes.class;
+        for (Field f : c.getFields()) {
+            try {
+                if (f.getType() == int.class && (f.getModifiers() & (Modifier.FINAL | Modifier.STATIC)) != 0 && f.getName() == keycodeName) {
+                    return (int)f.get(null);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return HIDKeyCodes.Arrow_Up;
     }
 }
