@@ -7,4 +7,131 @@
     android:background="@drawable/bg"
     tools:context="cz.butab.humanpad.SettingsActivity">
 
+    <ImageView
+        android:id="@+id/btnA2"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/image_a"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btna"
+        app:layout_constraintBottom_toTopOf="@+id/btnB2"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnB2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="29dp"
+        android:contentDescription="@string/image_b"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btnb"
+        app:layout_constraintBottom_toTopOf="@+id/btnC2"
+        app:layout_constraintEnd_toEndOf="@+id/btnA2"
+        app:layout_constraintStart_toStartOf="@+id/btnA2"
+        app:layout_constraintTop_toBottomOf="@+id/btnA2" />
+
+    <ImageView
+        android:id="@+id/btnC2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
+        android:contentDescription="@string/image_c"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btnc"
+        app:layout_constraintBottom_toTopOf="@+id/btnD2"
+        app:layout_constraintEnd_toEndOf="@+id/btnD2"
+        app:layout_constraintStart_toStartOf="@+id/btnD2"
+        app:layout_constraintTop_toBottomOf="@+id/btnB2" />
+
+    <ImageView
+        android:id="@+id/btnD2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="223dp"
+        android:contentDescription="@string/image_d"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnB2"
+        app:layout_constraintStart_toStartOf="@+id/btnB2"
+        app:layout_constraintTop_toBottomOf="@+id/btnC2" />
+
+    <Spinner
+        android:id="@+id/spinnerA"
+        android:layout_width="238dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/ic_launcher_background"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/btnA2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnA2"
+        app:layout_constraintTop_toTopOf="@+id/btnA2" />
+
+    <Spinner
+        android:id="@+id/spinnerB"
+        android:layout_width="238dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/ic_launcher_background"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/btnB2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toEndOf="@+id/btnB2"
+        app:layout_constraintTop_toTopOf="@+id/btnB2" />
+
+    <Spinner
+        android:id="@+id/spinnerC"
+        android:layout_width="238dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/ic_launcher_background"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/btnC2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toEndOf="@+id/btnC2"
+        app:layout_constraintTop_toTopOf="@+id/btnC2" />
+
+    <Spinner
+        android:id="@+id/spinnerD"
+        android:layout_width="238dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/ic_launcher_background"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/btnD2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toEndOf="@+id/btnD2"
+        app:layout_constraintTop_toTopOf="@+id/btnD2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ulozit" />
+
 </android.support.constraint.ConstraintLayout>
