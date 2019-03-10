@@ -51,7 +51,7 @@ public class Tab3Fragment extends Fragment implements SensorEventListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tab3, container, false);
     }
-
+    
     @Override
     public void onSensorChanged(SensorEvent event)
     {
