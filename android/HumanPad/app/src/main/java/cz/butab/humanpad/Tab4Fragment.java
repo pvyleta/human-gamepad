@@ -24,7 +24,7 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
     private Sensor accelerometerSensor;
     private SensorManager sensorManager;
     private MakeRequest request;
-    private Tab3Fragment.JumpState mJumpState = Tab3Fragment.JumpState.NO_JUMP;
+    private Tab4Fragment.JumpState mJumpState = Tab4Fragment.JumpState.NO_JUMP;
     private long mEventBeginning = 0;
     private long mEventCooldownBeginning = 0;
     private static final float GOING_UP_GRAVITY_THRESHOLD = 20.0f;
@@ -51,7 +51,7 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
         sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab3, container, false);
+        return inflater.inflate(R.layout.fragment_tab4, container, false);
     }
 
     @Override
@@ -73,12 +73,12 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
                 Math.pow(event.values[2],2));
 
         // check if an ongoing event hasn't passed a time limit, otherwise cancel it
-        if ((mJumpState != Tab3Fragment.JumpState.NO_JUMP) && hasTimeoutOccurred(event.timestamp, mEventBeginning))
+        if ((mJumpState != Tab4Fragment.JumpState.NO_JUMP) && hasTimeoutOccurred(event.timestamp, mEventBeginning))
         {
             // check iF accelerometer is stabilized, otherwise wait
             if (isStable(velocity))
             {
-                mJumpState = Tab3Fragment.JumpState.NO_JUMP;
+                mJumpState = Tab4Fragment.JumpState.NO_JUMP;
                 mEventBeginning = 0;
             }
 
@@ -92,19 +92,19 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
                 if (Math.abs(velocity) > GOING_UP_GRAVITY_THRESHOLD)
                 {
                     mEventBeginning = event.timestamp;
-                    mJumpState = Tab3Fragment.JumpState.GOING_UP;
+                    mJumpState = Tab4Fragment.JumpState.GOING_UP;
                 }
                 break;
             case GOING_UP:
                 if (Math.abs(velocity) < GOING_DOWN_GRAVITY_THRESHOLD)
                 {
-                    mJumpState = Tab3Fragment.JumpState.GOING_DOWN;
+                    mJumpState = Tab4Fragment.JumpState.GOING_DOWN;
                 }
                 break;
             case GOING_DOWN:
                 if (Math.abs(velocity) > LANDING_GRAVITY_THRESHOLD)
                 {
-                    mJumpState = Tab3Fragment.JumpState.LANDING;
+                    mJumpState = Tab4Fragment.JumpState.LANDING;
                     request.sendKeyAction(KeyMapper.Tab4.JumpKey, KeyAction.KeyPressed);
                 }
                 break;
@@ -114,14 +114,14 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
                     request.sendKeyAction(KeyMapper.Tab4.JumpKey, KeyAction.KeyRelease);
                     mEventCooldownBeginning = event.timestamp;
                     mEventBeginning = 0;
-                    mJumpState = Tab3Fragment.JumpState.COOLDOWN;
+                    mJumpState = Tab4Fragment.JumpState.COOLDOWN;
                 }
                 break;
             case COOLDOWN:
                 if ((event.timestamp - mEventCooldownBeginning) > EVENT_COOLDOWN_TIME_NS)
                 {
                 mEventCooldownBeginning = 0;
-                mJumpState = Tab3Fragment.JumpState.NO_JUMP;
+                mJumpState = Tab4Fragment.JumpState.NO_JUMP;
             }
                 break;
         }
