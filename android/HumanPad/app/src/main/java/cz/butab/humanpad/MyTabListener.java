@@ -1,28 +1,11 @@
 package cz.butab.humanpad;
 
-import android.content.Context;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout.ViewPagerOnTabSelectedListener;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
-import android.app.ActionBar.Tab;
+import android.support.v4.app.Fragment;
+
 
 public class MyTabListener extends ViewPagerOnTabSelectedListener implements TabLayout.OnTabSelectedListener {
 
@@ -35,6 +18,22 @@ public class MyTabListener extends ViewPagerOnTabSelectedListener implements Tab
         super.onTabSelected(tab);
         Log.i("POSITION", String.valueOf(tab.getPosition()));
         Constants.TAB = tab.getPosition();
+
+        MakeRequest mkReq = new MakeRequest("http://192.168.10.10:8000");
+        mkReq.sendKeyAction(KeyMapper.Tab1.ArrowDownKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab1.ArrowUpKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab2.ArrowRightKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab2.ArrowLeftKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab3.FireKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab4.JumpKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab5.ArrowDownKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab5.ArrowLeftKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab5.ArrowRightKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab5.ArrowUpKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab6.ButtonAKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab6.ButtonBKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab6.ButtonCKey, KeyAction.KeyRelease);
+        mkReq.sendKeyAction(KeyMapper.Tab6.ButtonDKey, KeyAction.KeyRelease);
     }
 
     @Override

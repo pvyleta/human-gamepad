@@ -13,13 +13,14 @@
         android:id="@+id/ballSide"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerInside"
-        android:src="@drawable/btnb"
+        android:src="@drawable/kompas"
         app:layout_constraintBottom_toTopOf="@+id/barrier"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="152dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
