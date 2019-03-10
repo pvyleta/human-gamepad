@@ -73,19 +73,19 @@ public class MakeRequest {
 
             Log.i("STATUS", String.valueOf(conn.getResponseCode()));
             Log.i("MSG", conn.getResponseMessage());
-
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-
-            // Read Server Response
-            while ((line = reader.readLine()) != null) {
-                // Append server response in string
-                sb.append(line + "\n");
-            }
-
-            text = sb.toString().trim();
-            Log.i("REQUEST: ", "Odpoved serveru: " + text);
+// TODO: neresime odezvu, kvuli timeout zakomentovano
+//            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//            StringBuilder sb = new StringBuilder();
+//            String line = null;
+//
+//            // Read Server Response
+//            while ((line = reader.readLine()) != null) {
+//                // Append server response in string
+//                sb.append(line + "\n");
+//            }
+//
+//            text = sb.toString().trim();
+//            Log.i("REQUEST: ", "Odpoved serveru: " + text);
 
             conn.disconnect();
 
