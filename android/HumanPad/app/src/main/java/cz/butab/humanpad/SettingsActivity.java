@@ -30,9 +30,40 @@ public class SettingsActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ((Spinner) findViewById(R.id.spinnerA)).setAdapter(adapter);
-        ((Spinner) findViewById(R.id.spinnerB)).setAdapter(adapter);
-        ((Spinner) findViewById(R.id.spinnerC)).setAdapter(adapter);
-        ((Spinner) findViewById(R.id.spinnerD)).setAdapter(adapter);
+        Spinner s;
+        s = (Spinner) findViewById(R.id.spinnerA);
+        s.setAdapter(adapter);
+        s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonAKey));
+
+        s = (Spinner) findViewById(R.id.spinnerB);
+        s.setAdapter(adapter);
+        s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonBKey));
+
+        s = (Spinner) findViewById(R.id.spinnerC);
+        s.setAdapter(adapter);
+        s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonCKey));
+
+        s = (Spinner) findViewById(R.id.spinnerD);
+        s.setAdapter(adapter);
+        s.setSelection(getSelectedIndex(items, KeyMapper.Tab6.ButtonDKey));
+    }
+
+    private int getSelectedIndex(List<String> items, int keycode) {
+        return items.indexOf(getNameOf(keycode));
+    }
+
+    private String getNameOf(int keycode) {
+        Class c = HIDKeyCodes.class;
+        for (Field f : c.getFields()) {
+            try {
+                if (f.getType() == int.class && (f.getModifiers() & (Modifier.FINAL | Modifier.STATIC)) != 0 && (int)f.get(null) == keycode) {
+                    return f.getName();
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 }
