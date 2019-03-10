@@ -55,12 +55,10 @@ public class Tab2Fragment extends Fragment implements SensorEventListener {
         return myView;
     }
 
-
     @Override
     public void onSensorChanged(SensorEvent event) {
-
-        if(Constants.TAB == 2) {
-            Log.i("Tab2", "onSensorChange");
+        if(Constants.TAB == 1) {
+            //Log.i("Tab2", "onSensorChange");
             lastTenValues.add(event.values[0]);
 
             if (lastTenValues.size() == 10) {

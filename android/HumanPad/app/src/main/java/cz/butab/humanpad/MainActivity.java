@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.DisplayMetrics;
+import android.util.Log;
+
 
 import android.widget.TextView;
 
@@ -57,17 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
+
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        tabLayout.addOnTabSelectedListener(new MyTabListener(mViewPager));
     }
 
     @Override
@@ -81,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
+        Log.d("ID", String.valueOf(id));
+       // Constants.TAB = item.getItemId();
 
         return super.onOptionsItemSelected(item);
     }

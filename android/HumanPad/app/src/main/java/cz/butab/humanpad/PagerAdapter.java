@@ -1,9 +1,10 @@
 package cz.butab.humanpad;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
+
+import static cz.butab.humanpad.R.layout.fragment_tab1;
 
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
@@ -19,8 +20,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         Log.d("TAB", "Zmena tabu");
         Log.d("TAB", String.valueOf(position));
-
-        Constants.TAB = position;
 
         switch (position) {
             case 0:

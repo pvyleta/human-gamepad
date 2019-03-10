@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -56,9 +57,8 @@ public class Tab1Fragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
-        if(Constants.TAB == 1) {
-            Log.i("Tab1", "onSensorChange");
+        if(Constants.TAB == 0) {
+            //Log.i("Tab1", "onSensorChange");
             lastTenValues.add(event.values[1]);
 
             if (lastTenValues.size() == 10) {
