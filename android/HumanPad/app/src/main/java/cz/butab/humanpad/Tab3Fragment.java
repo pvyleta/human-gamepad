@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 public class Tab3Fragment extends Fragment implements SensorEventListener {
     enum JumpState {
@@ -33,6 +34,7 @@ public class Tab3Fragment extends Fragment implements SensorEventListener {
     private static final float STABLE_UPPER_GRAVITY_THRESHOLD = 11.0f;
     private static final long MAX_EVENT_TIME_NS = 2000000000L; // in nanoseconds (= 2sec)
     private static final long EVENT_COOLDOWN_TIME_NS = 200000000L; // in nanoseconds (= 0.2sec)
+//    private ImageView icon;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +51,14 @@ public class Tab3Fragment extends Fragment implements SensorEventListener {
         sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab3, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab3, container, false);
+//        icon = view.findViewById(R.id.ballMove);
+//        icon.setY(Constants.HIGH/2);
+
+        // Inflate the layout for this fragment
+        return view;
+
+
     }
 
     @Override

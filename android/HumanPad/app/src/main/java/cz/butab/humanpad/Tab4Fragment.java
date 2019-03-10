@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 public class Tab4Fragment extends Fragment implements SensorEventListener {
     enum JumpState {
@@ -33,6 +34,7 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
     private static final float STABLE_UPPER_GRAVITY_THRESHOLD = 11.0f;
     private static final long MAX_EVENT_TIME_NS = 2000000000L; // in nanoseconds (= 2sec)
     private static final long EVENT_COOLDOWN_TIME_NS = 200000000L; // in nanoseconds (= 0.2sec)
+    private ImageView ball;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,9 +117,9 @@ public class Tab4Fragment extends Fragment implements SensorEventListener {
             case COOLDOWN:
                 if ((event.timestamp - mEventCooldownBeginning) > EVENT_COOLDOWN_TIME_NS)
                 {
-                    mEventCooldownBeginning = 0;
-                    mJumpState = Tab3Fragment.JumpState.NO_JUMP;
-                }
+                mEventCooldownBeginning = 0;
+                mJumpState = Tab3Fragment.JumpState.NO_JUMP;
+            }
                 break;
         }
     }
